@@ -8,9 +8,10 @@ class Array
 
   def index_by
     raise ArgumentError unless block_given?
-    to_return = {}
-    self.each { |el| to_return[yield el] = el }
-    to_return
+    self.inject({}) do |to_return, el| 
+      to_return[yield el] = el
+      to_return
+    end
   end
 
   def subarray_count(subarray)
