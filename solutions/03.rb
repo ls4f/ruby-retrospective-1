@@ -223,7 +223,7 @@ class Inventory
   
   def register(item_name, item_price, discount_type = { :dummy => nil })
     raise 'Give me a name, not a novell!' if item_name.length > 40
-    item_price = BigDecimal(item_price)
+    item_price = item_price.to_d
     raise 'Reevaluate it!' if (item_price < MIN_PRICE or item_price > MAX_PRICE)
     raise 'I`ve seen that one already!' if item_registered? item_name
     @registered_items << InventoryItem.new(item_name, item_price, discount_type)
